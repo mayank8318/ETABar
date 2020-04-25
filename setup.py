@@ -9,7 +9,7 @@ with open(os.path.join('.', 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='etabar',
-    version='0.0.1',
+    version='0.0.2',
     author='Mayank Vaidya',
     author_email='mayank8318@gmail.com',
     url='https://github.com/mayank8318/ETABar',
