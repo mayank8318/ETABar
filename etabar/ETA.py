@@ -23,4 +23,4 @@ class ETA:
         if type(eta) is str:
             print("\rCompleted : " + "{:.2f}".format(completed) + "%\t ETA = " + eta, end="")
             return
-        print("\rCompleted : " + "{:.2f}".format(completed) + "%\t ETA = " + str(datetime.timedelta(seconds=eta)) + "s", end="")
+        print("\rCompleted : " + "{:.2f}".format(completed) + "%\t ETA = " + str(datetime.timedelta(seconds=eta)), end="")
