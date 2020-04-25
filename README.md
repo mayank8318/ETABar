@@ -1,17 +1,28 @@
 # Script Queue Manager
-
-A small suite of simple CLI tools to queue up scripts to be executed. A simple use case is that of having to repeatedly execute the same scripts with different parameters and each script takes hours to execute. (eg - I personally use it to queue my deep learning training tasks)
+A simple library to display an eta bar. Useful to track the progress of long running tasks. It can be included in the project with just 2 lines of code.
 
 ## Installing from pip
 
 ### Stable release
 ```shell script
-pip install script-queue-manager
+pip install etabar
 ```
 
 ### Development release
 ```shell script
-pip install -i https://test.pypi.org/simple/ script-queue-manager
+pip install -i https://test.pypi.org/simple/ etabar
+```
+
+### Example usage
+```python
+from etabar.ETA import ETA
+import time
+
+eta = ETA(100)
+time.sleep(2)
+for i in range(100):
+    eta.update()
+    time.sleep(2)
 ```
 
 ## Getting Started
@@ -33,43 +44,13 @@ Follow the steps mentioned below to get your dev instance running.
 1) It is highly advisable that you create a new Python environment for the project. Follow the instructions given [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands).
 
 1) Navigate to the project directory and install the `requirement.txt` packages.
-    ```
+    ```shell script
     cd <project-directory>
     pip install -r requirements.txt
     ```
-1) Build the project:
-
-    ``` 
-    python setup.py install 
-    ```
-
-1) Use the `pusher` to push a script to the task queue.
-   ```
-   sqm-pusher -s "cat x.txt"
-   ``` 
-1) Start the `executor` tool.
-   ```
-   sqm-executor
-   ```
-   If you want to start it as a background process, in Ubuntu run 
-   ```
-   sqm-executor &
-   ```
    
-## Execution Model
-The executor fetches an object from the front of the queue and prepares a script as `PRE_SCRIPT + QUEUE_SCRIPT`. Here, `PRE_SCRIPT` can be given as input to the executor using the flag `-p` as shown below:
-```shell script
-sqm-executor -p "path-to-the-file-containing-the-prescripts"
-```
-The sleeping interval for the executor to sleep in between tasks can be provided using the flag `-s`. By default it is 15s.
-The executor produces logs for every task it executes. The file path for this log file can be provided using the `-l` flag. By default it is located at `$HOME/sqm/logs.txt`.
-
 ## Tests
 Not yet implemented
-
-## Built With
-
-* [Persistqueue](https://pypi.org/project/persist-queue/) - File based queue.
 
 ## Contributing
 
